@@ -196,3 +196,16 @@ textarea{
 let titulo = document.getElementsById("titulo");
 titulo.className = "color-red";
  */
+
+ .formu{
+display:flex;
+flex-direction: column;
+padding: 2rem;
+        width: 60%;
+        border-radius: 10px;
+        margin: auto;
+    
+ }
+ input {
+    margin-top: 1rem;
+ }

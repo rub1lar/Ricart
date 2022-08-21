@@ -1,6 +1,5 @@
 /// funcion para capturar datos ingresados cuando se registran con una clase Registrado que es el objeto de los registrados////
 function capturar() {
- 
   class Registrado {
     constructor(usuario, nombre, email, contraseña) {
       this.usuario = usuario;
@@ -14,34 +13,21 @@ function capturar() {
   let capturarNombre = document.getElementById("name").value;
   let capturarEmail = document.getElementById("lname").value;
   let capturarContraseña = document.getElementById("pass").value;
-  nuevoRegistrado = new Registrado(
+    nuevoRegistrado = new Registrado(
     capturarUsuario,
     capturarNombre,
     capturarEmail,
     capturarContraseña
   );
-   appendearAlArray();
-   console.log (nuevoRegistrado);
-   // si le saco el let se conviert en objeto global y la puedo usar en todos lados //
-  alert("listo quedaste registrado como: "+ capturarUsuario + "te enviaremos un email de confirmacion al email: "+capturarEmail); 
- }
-  // cada vez que  se registre va a ejecutar la funcion de abajo apendear al array//asi se guarda sino se borra
- let ArrayRegistrados = [];
-  //esta funcion va a appendear los registrados con push al array creado arriba
-  function appendearAlArray() {
-    ArrayRegistrados.push(nuevoRegistrado);
-
-  }
-    console.log (ArrayRegistrados);
+  if( capturarUsuario !="" && capturarNombre !="" && capturarEmail !="" && capturarContraseña !="" ){
+  console.log(nuevoRegistrado);
+document.getElementById("regis").innerHTML += "<h3>Listo! Quedaste Registrado Como : " + capturarUsuario + " te llegara un email de confirmacion a " + capturarEmail ;
+ArrayRegistrados.push(nuevoRegistrado);}
+}
+let ArrayRegistrados = [];
 
 
-
-
-
-
-
-
-//hago clase para los objetos, que seran 3 tipos
+/* //hago clase para los objetos, que seran 3 tipos
 //diferentes de carteles, front- back-ligth y vinilo.
 class cartel {
   constructor(nombre, precio, stock, categoria) {
@@ -83,6 +69,7 @@ function Loggearse() {
 // depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada
 
 function Presupuesto() {
+  let carte ="";
   alert(" que tipo de cartel necesita?");
   alert("1- cartel front \n  2- cartel back-light");
   let seleccionCartel = parseInt(
@@ -90,8 +77,7 @@ function Presupuesto() {
   );
   let primerNumero = parseInt(prompt("ingresa los metros que necesita"));
   while (
-    seleccionCartel != 1 &&
-    seleccionCartel != 2 ||
+    (seleccionCartel != 1 && seleccionCartel != 2) ||
     seleccionCartel == "" ||
     primerNumero < 0 ||
     primerNumero == ""
@@ -103,11 +89,21 @@ function Presupuesto() {
     );
     primerNumero = parseInt(prompt("ingresa los metros que necesita"));
   }
-  if (seleccionCartel == 1 && seleccionCartel!="") {
+  if (seleccionCartel == 1 && seleccionCartel != "") {
+    carte= "Front";
     let resultado = primerNumero * cartelFront.precio;
-    alert("el precio total aproximado es: $ " + resultado);
-  } else if (seleccionCartel ==2  && seleccionCartel!=""){
+    document.getElementById("cuerpoPresupuesto").innerHTML +=
+    " <tr><td>"+carte+"</td><td>"+primerNumero+"</td><td> $"+resultado+"</td></tr> ";
+  } else if (seleccionCartel == 2 && seleccionCartel != "") {
+    carte= "Back-Ligth"
     let resultado = primerNumero * cartelBack.precio;
-    alert("el precio total aproximado es: $ " + resultado);
-  }else ( alert ("Error \n disculpe las molestias \n  vuelva a intentarlo nuevamente"))
+    document.getElementById("cuerpoPresupuesto").innerHTML +=
+    " <tr><td>"+carte+"</td><td>"+primerNumero+"</td><td> $"+resultado+"</td></tr> ";
+  } else{
+    alert("Error \n disculpe las molestias \n  vuelva a intentarlo nuevamente");
+};
+ 
 }
+
+
+ */

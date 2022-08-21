@@ -114,15 +114,16 @@ Corporeas, decoracion de vidrieras con vinilo, asi como colocacion de toldos/fac
 <h3>Inicia sesion y registrate como cliente para tener descuentos!</h3>
 <div >
   <h2> Registrate </h2>
-  <form >
-    <div>
+    <div class="formu">
       <input type="text" placeholder="Usuario"  id="user" required>
       <input type="text" placeholder="Nombres"  id="name" required>
       <input type="text" placeholder="Email" id="lname" required >
       <input type="password" placeholder="Contraseña" id="pass" required >
     </div>
       <button id="registrar" onclick="capturar();">Registrarse</button>
-  </form>
+      <div  id="regis">
+
+      </div>
   <div >
     <h2> Login </h2>
     <form >
@@ -149,6 +150,22 @@ Corporeas, decoracion de vidrieras con vinilo, asi como colocacion de toldos/fac
 <h3>(011)1567127274</h3>
 <h4>ricartcarteles@gmail.com</h4>
 <a class="btn btn-secondary text-center mb-4" role="button" onclick="Presupuesto();">Presupuestar</a>
+<div >
+  <table class="table">
+    <thead >
+      <tr>
+        <th scope="col">Tipo de Cartel</th>
+        <th scope="col">Cantidad de Metros</th>
+        <th scope="col">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody id="cuerpoPresupuesto">
+     
+    </tbody>
+  </table>
+  
+
+</div>
 </aside>
 
 <footer
