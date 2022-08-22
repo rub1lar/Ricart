@@ -209,3 +209,7 @@ padding: 2rem;
  input {
     margin-top: 1rem;
  }
+
+ .padding {
+    padding-bottom: rem;
+ }

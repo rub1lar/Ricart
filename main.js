@@ -1,3 +1,4 @@
+
 /// funcion para capturar datos ingresados cuando se registran con una clase Registrado que es el objeto de los registrados////
 function capturar() {
   class Registrado {
@@ -21,13 +22,30 @@ function capturar() {
   );
   if( capturarUsuario !="" && capturarNombre !="" && capturarEmail !="" && capturarContraseña !="" ){
   console.log(nuevoRegistrado);
-document.getElementById("regis").innerHTML += "<h3>Listo! Quedaste Registrado Como : " + capturarUsuario + " te llegara un email de confirmacion a " + capturarEmail ;
+document.getElementById("regis").innerHTML += "<h3>Listo!" +capturarNombre + " Quedaste Registrado Como : " + capturarUsuario + " te llegara un email de confirmacion a " + capturarEmail ;
 ArrayRegistrados.push(nuevoRegistrado);}
 }
 let ArrayRegistrados = [];
+let UsuarioLogeado =  null;
+// ACA HICE UN if CON¿ UN CONDICIONAL DE QUE EL PASS SEA IGUAL QUE A LA
+//CONTRASEÑA INGRESADA POR EL USUARIO
+  
+function Loggearse() {
 
+  let usuarioL = document.getElementById("userlogin").value;
+  let contraseña = document.getElementById("passlogin").value;
+  UsuarioLogeado = ArrayRegistrados.find(registro => registro.usuario == usuarioL);
+//si el usuario y la contraseña son iguales a los de uno del objeto del array devolver true//
+  if (UsuarioLogeado){
+    document.getElementById("logeo").innerHTML+= "La Contraseña Es correcta, ";
+    } else {
+    document.getElementById("logeo").innerHTML+= "Contraseña inCorrecta";
+}}
+// aca hice una funcion Presupuesto donde te indica si ingresar 1 o 2 depende el tipo de cartel, luego la cantidad de metros
+//que necesita de cartel, tambien que tire error si es otro valor diferente a 1 o 2,
+// depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada
 
-/* //hago clase para los objetos, que seran 3 tipos
+//hago clase para los objetos, que seran 3 tipos
 //diferentes de carteles, front- back-ligth y vinilo.
 class cartel {
   constructor(nombre, precio, stock, categoria) {
@@ -53,22 +71,8 @@ console.log(carteles);
 let cartelesDeLona = carteles.filter((cartel) => cartel.categoria == "lona");
 console.log(cartelesDeLona);
 
-// ACA HICE UN if CON UN CONDICIONAL DE QUE EL PASS SEA IGUAL QUE A LA
-//CONTRASEÑA INGRESADA POR EL USUARIO
-
-function Loggearse() {
-  let contraseña = document.getElementById("passlogin").value;
-  let pass = "contraseña";
-  if (contraseña != pass) {
-    alert("la contraseña es incorrecta, vuelve a intentar");
-  } else alert("contraseña correcta");
-}
-
-// aca hice una funcion Presupuesto donde te indica si ingresar 1 o 2 depende el tipo de cartel, luego la cantidad de metros
-//que necesita de cartel, tambien que tire error si es otro valor diferente a 1 o 2,
-// depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada
-
 function Presupuesto() {
+
   let carte ="";
   alert(" que tipo de cartel necesita?");
   alert("1- cartel front \n  2- cartel back-light");
@@ -92,8 +96,14 @@ function Presupuesto() {
   if (seleccionCartel == 1 && seleccionCartel != "") {
     carte= "Front";
     let resultado = primerNumero * cartelFront.precio;
+    if (UsuarioLogeado){
+      resultado = resultado * 0.9;
+      document.getElementById("cuerpoPresupuesto").innerHTML +=
+      " <tr><td>"+carte+"</td><td>"+primerNumero+"</td><td> $"+resultado+"</td></tr> ";
+    }else {
+      resultado = primerNumero * cartelFront.precio;
     document.getElementById("cuerpoPresupuesto").innerHTML +=
-    " <tr><td>"+carte+"</td><td>"+primerNumero+"</td><td> $"+resultado+"</td></tr> ";
+    " <tr><td>"+carte+"</td><td>"+primerNumero+"</td><td> $"+resultado+"</td></tr> ";}
   } else if (seleccionCartel == 2 && seleccionCartel != "") {
     carte= "Back-Ligth"
     let resultado = primerNumero * cartelBack.precio;
@@ -101,9 +111,8 @@ function Presupuesto() {
     " <tr><td>"+carte+"</td><td>"+primerNumero+"</td><td> $"+resultado+"</td></tr> ";
   } else{
     alert("Error \n disculpe las molestias \n  vuelva a intentarlo nuevamente");
-};
- 
+}
 }
 
 
- */
+
