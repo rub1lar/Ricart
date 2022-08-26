@@ -42,8 +42,8 @@ let UsuarioLogeado = null;
 //CONTRASEÑA INGRESADA POR EL USUARIO
 
 function Loggearse() {
-  let usuarioL = document.getElementById("userlogin").value;
-  let contraseña = document.getElementById("passlogin").value;
+  let usuarioL = document.getElementById("primerImput").value;
+  let contraseña = document.getElementById("segundoImput").value;
   UsuarioLogeado = ArrayRegistrados.find(
     (registro) =>
       registro.usuario == usuarioL && registro.contraseña == contraseña
@@ -154,7 +154,15 @@ function Presupuesto() {
         primerNumero +
         "</td><td> $" +
         resultado +
-        "</td></tr> ";
+        "</td></tr> <th></th><th></th><th></tr>";
     }
   }
 }
+
+let enterr = document.getElementById("primerImput");
+enterr.addEventListener("keyup", (event) => {
+  if (event.code === "Enter") {
+    console.log(event.code);
+    document.getElementById("segundoImput").focus();
+  }
+});
