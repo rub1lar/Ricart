@@ -38,7 +38,7 @@ function capturar() {
 }
 let ArrayRegistrados = [];
 let UsuarioLogeado = null;
-// ACA HICE UN if CON¿ UN CONDICIONAL DE QUE EL PASS SEA IGUAL QUE A LA
+// ACA HICE UN if CON UN CONDICIONAL DE QUE EL PASS SEA IGUAL QUE A LA
 //CONTRASEÑA INGRESADA POR EL USUARIO
 
 function Loggearse() {
@@ -56,9 +56,10 @@ function Loggearse() {
       "Contraseña incorrecta, intente nuevamente";
   }
 }
-// aca hice una funcion Presupuesto donde te indica si ingresar 1 o 2 depende el tipo de cartel, luego la cantidad de metros
-//que necesita de cartel, tambien que tire error si es otro valor diferente a 1 o 2,
-// depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada
+// aca hice una funcion Presupuesto donde elige por medio de botones el tipo de cartel, luego ingresaa en el imput number la cantidad de metros
+//que necesita de cartel, si lo campos estan vacios no hace nada, asi como si es menor a 0.
+// depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada, tambien verifica si esta registrado y le suma un 10 % 
+//de descuento al precio final
 
 //hago clase para los objetos, que seran 3 tipos
 //diferentes de carteles, front- back-ligth y vinilo.
@@ -71,9 +72,9 @@ class cartel {
   }
 }
 //creo los objetos//
-let cartelFront = new cartel("cartel front", 3000, true, "lona");
-let cartelBack = new cartel("cartel back", 4000, true, "lona");
-let Vinilo = new cartel("vinilo", 8500, true, "vinilo");
+let cartelFront = new cartel("cartel front", 8000, true, "lona");
+let cartelBack = new cartel("cartel back", 14000, true, "lona");
+let Vinilo = new cartel("vinilo", 800, true, "vinilo");
 
 //creo array //
 const carteles = [];
@@ -86,79 +87,6 @@ console.log(carteles);
 let cartelesDeLona = carteles.filter((cartel) => cartel.categoria == "lona");
 console.log(cartelesDeLona);
 
-function Presupuesto() {
-  let carte = "";
-  alert(" que tipo de cartel necesita?");
-  alert("1- cartel front \n  2- cartel back-light");
-  let seleccionCartel = parseInt(
-    prompt("ingrese el tipo de cartel que necesita (1) o (2)")
-  );
-  let primerNumero = parseInt(prompt("ingresa los metros que necesita"));
-  while (
-    (seleccionCartel != 1 && seleccionCartel != 2) ||
-    seleccionCartel == "" ||
-    primerNumero < 0 ||
-    primerNumero == ""
-  ) {
-    alert("error, seleccione una opcion valida");
-    alert("1- cartel front \n  2- cartel back-light");
-    seleccionCartel = parseInt(
-      prompt("ingrese el tipo de cartel que necesita (1) o (2)")
-    );
-    primerNumero = parseInt(prompt("ingresa los metros que necesita"));
-  }
-  if (seleccionCartel == 1 && seleccionCartel != "") {
-    carte = "Front";
-    let resultado = primerNumero * cartelFront.precio;
-    if (UsuarioLogeado) {
-      resultado = resultado * 0.9;
-      document.getElementById("cuerpoPresupuesto").innerHTML +=
-        " <tr><td>" +
-        carte +
-        "</td><td>" +
-        primerNumero +
-        "</td><td> $" +
-        resultado +
-        "</td></tr> ";
-    } else {
-      resultado = primerNumero * cartelFront.precio;
-      document.getElementById("cuerpoPresupuesto").innerHTML +=
-        " <tr><td>" +
-        carte +
-        "</td><td>" +
-        primerNumero +
-        "</td><td> $" +
-        resultado +
-        "</td></tr> ";
-    }
-  }
-
-  if (seleccionCartel == 2 && seleccionCartel != "") {
-    carte = "Back-Ligth";
-    let resultado = primerNumero * cartelBack.precio;
-    if (UsuarioLogeado) {
-      resultado = resultado * 0.9;
-      document.getElementById("cuerpoPresupuesto").innerHTML +=
-        " <tr><td>" +
-        carte +
-        "</td><td>" +
-        primerNumero +
-        "</td><td> $" +
-        resultado +
-        "</td></tr> ";
-    } else {
-      document.getElementById("cuerpoPresupuesto").innerHTML +=
-        " <tr><td>" +
-        carte +
-        "</td><td>" +
-        primerNumero +
-        "</td><td> $" +
-        resultado +
-        "</td></tr> <th></th><th></th><th></tr>";
-    }
-  }
-}
-
 let enterr = document.getElementById("primerImput");
 enterr.addEventListener("keyup", (event) => {
   if (event.code === "Enter") {
@@ -166,3 +94,65 @@ enterr.addEventListener("keyup", (event) => {
     document.getElementById("segundoImput").focus();
   }
 });
+
+let front = false;
+let backl = false;
+let fro = document.getElementById("front");
+fro.addEventListener("click", () => {
+  front = true;
+  backl = false;
+});
+document.getElementById("backl").addEventListener("click", () => {
+  backl = true;
+  front = false;
+});
+
+function Presupuesto() {
+  let imputNumber = document.getElementById("number").value;
+  let resultadoF = imputNumber * cartelFront.precio;
+  let resultadoB = imputNumber * cartelBack.precio;
+  let descuentoB = resultadoB * 0.9;
+  let descuentoF = resultadoF * 0.9;
+  if (front == true && UsuarioLogeado && imputNumber != "" && imputNumber > 0) {
+    document.getElementById("cuerpoPresupuesto").innerHTML +=
+      " <tr><td>" +
+      "CARTEL FRONT" +
+      "</td><td>" +
+      imputNumber +
+      "</td><td> $" +
+      descuentoF +
+      "</td></tr> ";
+  } else if (front == true && imputNumber != "" && imputNumber > 0) {
+    document.getElementById("cuerpoPresupuesto").innerHTML +=
+      " <tr><td>" +
+      "CARTEL FRONT" +
+      "</td><td>" +
+      imputNumber +
+      "</td><td> $" +
+      resultadoF +
+      "</td></tr> ";
+  } else if (
+    backl == true &&
+    UsuarioLogeado &&
+    imputNumber != "" &&
+    imputNumber > 0
+  ) {
+    document.getElementById("cuerpoPresupuesto").innerHTML +=
+      " <tr><td>" +
+      "CARTEL BACK" +
+      "</td><td>" +
+      imputNumber +
+      "</td><td> $" +
+      descuentoB +
+      "</td></tr> ";
+  } else if (backl == true && imputNumber != "" && imputNumber > 0) {
+    document.getElementById("cuerpoPresupuesto").innerHTML +=
+      " <tr><td>" +
+      "CARTEL BACK" +
+      "</td><td>" +
+      imputNumber +
+      "</td><td> $" +
+      resultadoB +
+      "</td></tr> ";
+  }
+}
