@@ -34,9 +34,19 @@ function capturar() {
       " te llegara un email de confirmacion a " +
       capturarEmail;
     ArrayRegistrados.push(nuevoRegistrado);
+    guardarLocalStorage();
   }
 }
-let ArrayRegistrados = [];
+
+// ACAC TRAIGO LOS ELEMENTOS DEL LOCAL STORAGE ANTES QUE NADA //
+let ArrayRegistrados =
+  JSON.parse(localStorage.getItem("registrados en JSON")) || [];
+//ACA CREO UNA FUNCION PARA GUARDAR EN EL LOCAL STORE CADA VEZ QUE ALGUIEN SE REGISTRE//
+let guardarLocalStorage = () => {
+  let nuevoRegistradoEnJASON = JSON.stringify(ArrayRegistrados);
+  localStorage.setItem("registrados en JSON", nuevoRegistradoEnJASON);
+};
+
 let UsuarioLogeado = null;
 // ACA HICE UN if CON UN CONDICIONAL DE QUE EL PASS SEA IGUAL QUE A LA
 //CONTRASEÑA INGRESADA POR EL USUARIO
@@ -58,7 +68,7 @@ function Loggearse() {
 }
 // aca hice una funcion Presupuesto donde elige por medio de botones el tipo de cartel, luego ingresaa en el imput number la cantidad de metros
 //que necesita de cartel, si lo campos estan vacios no hace nada, asi como si es menor a 0.
-// depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada, tambien verifica si esta registrado y le suma un 10 % 
+// depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada, tambien verifica si esta registrado y le suma un 10 %
 //de descuento al precio final
 
 //hago clase para los objetos, que seran 3 tipos
@@ -86,6 +96,9 @@ console.log(carteles);
 /// filtro del array creado los carteles que son de lona//
 let cartelesDeLona = carteles.filter((cartel) => cartel.categoria == "lona");
 console.log(cartelesDeLona);
+
+document.getElementById("logear").addEventListener("click", Loggearse);
+document.getElementById("registrar").addEventListener("click", capturar);
 
 let enterr = document.getElementById("primerImput");
 enterr.addEventListener("keyup", (event) => {
