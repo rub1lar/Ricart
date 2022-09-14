@@ -184,7 +184,6 @@ textarea{
 	border-radius:3px;
 	background-color:#2b56e5;			
 	margin:8px 0;
-	/*resize: vertical | horizontal | none | both*/
 	resize:none;
 	display:block;
 }
@@ -192,10 +191,6 @@ textarea{
 .color-red {
     color: darkred;
 }
-/* ////get elem
-let titulo = document.getElementsById("titulo");
-titulo.className = "color-red";
- */
 
  .formu{
 display:flex;
@@ -213,3 +208,29 @@ padding: 2rem;
  .padding {
     padding-bottom: rem;
  }
+
+
+ aside input {
+  
+        width: 25%;
+        margin-top: 1rem;
+ 
+ };
+
+ aside button {
+    width: 50%;
+ }
+
+ #front {
+    font-size: 2rem;
+    font-weight: 600;
+    width: 30%;
+ }
+ 
+ #backl {
+    
+    font-size: 2rem;
+    font-weight: 600;
+    width:30%;
+ }
+ 
