@@ -13,6 +13,8 @@ function capturar() {
   let capturarNombre = document.getElementById("name").value;
   let capturarEmail = document.getElementById("lname").value;
   let capturarContraseña = document.getElementById("pass").value;
+  let resetea = document.getElementById("resetearformu");
+
 
   nuevoRegistrado = new Registrado(
     capturarUsuario,
@@ -33,8 +35,14 @@ function capturar() {
       icon: "error",
       title: "El Nombre De Usuario Ya Fue Usado, Prueba Otro ",
       showConfirmButton: true,
+      confirmButtonColor: "#386dbd",
       timer: 4000,
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
+
   } else if (
     capturarUsuario != "" &&
     nombValido == true &&
@@ -52,12 +60,20 @@ function capturar() {
         " te llegara un email de confirmacion a:  " +
         capturarEmail,
       showConfirmButton: true,
+      confirmButtonColor: "#386dbd",
       timer: 4000,
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
     console.log(nuevoRegistrado);
     ArrayRegistrados.push(nuevoRegistrado);
     guardarLocalStorage();
+    resetea.reset();
   }
+
+
 }
 // ACAC TRAIGO LOS ELEMENTOS DEL LOCAL STORAGE ANTES QUE NADA //
 let ArrayRegistrados =
@@ -69,6 +85,19 @@ let guardarLocalStorage = () => {
 };
 
 let UsuarioLogeado = null;
+function Deslogearse() {
+  (document.getElementById("regitre").innerHTML = ` 
+   <h2 class="mt-4"> Login </h2>
+  <div class="formu">
+  <input id="primerImput" type="text" placeholder="Usuario">
+  <input id="segundoImput" type="password" placeholder="Contraseña">
+  </div>
+  <button id="logear">Iniciar Sesion</button>
+  <h3 id="logeo"></h3> 
+  `),
+    document.getElementById("logear").addEventListener("click", Loggearse);
+  UsuarioLogeado = false;
+}
 // ACA HICE UN if CON UN CONDICIONAL DE QUE EL PASS SEA IGUAL QUE A LA
 //CONTRASEÑA INGRESADA POR EL USUARIO
 //FUNCION PARA LOGGERASE//
@@ -85,14 +114,28 @@ function Loggearse() {
       icon: "success",
       title: "Contraseña Correcta",
       showConfirmButton: true,
+      confirmButtonColor: "#386dbd",
       timer: 4000,
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
+    document.getElementById(
+      "regitre"
+    ).innerHTML = ` <p class="sesionIniciada">INICIASTE SESION COMO: ${usuarioL} </p> <button onclick = "Deslogearse();"> Salir de la sesion </button>
+    `;
   } else if (UsuarioLogeado == false || (usuarioL != "" && contraseña != "")) {
     Swal.fire({
       position: "center",
       icon: "error",
       title: "Contraseña Incorrecta",
       timer: 4000,
+      confirmButtonColor: "#386dbd",
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
   }
 }
@@ -137,7 +180,7 @@ let backl = false;
 let fro = document.getElementById("front");
 let bk = document.getElementById("backl");
 fro.addEventListener("click", () => {
-  fro.style.backgroundColor = "green";
+  fro.style.backgroundColor = "blue";
   bk.style.backgroundColor = "";
 
   front = true;
@@ -145,7 +188,7 @@ fro.addEventListener("click", () => {
 });
 bk.addEventListener("click", () => {
   fro.style.backgroundColor = "";
-  bk.style.backgroundColor = "green";
+  bk.style.backgroundColor = "blue";
 
   backl = true;
   front = false;
@@ -188,10 +231,17 @@ function Presupuesto() {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "El Total De Tu Presupuesto Para Cartel Front Es: $ " + descuentoF,
+      title:
+        '<spam class ="parrafo">El Total De Tu Presupuesto Para Cartel Front Es: $' +
+        descuentoF +
+        "</spam>",
       showConfirmButton: true,
+      confirmButtonColor: "#386dbd",
       timer: 6000,
-      background:'linear-gradient (#2b45cf,#3b45cf)',
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
 
     presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
@@ -223,8 +273,12 @@ function Presupuesto() {
       icon: "success",
       title: "El Total De Tu Presupuesto Para Cartel Front Es: $ " + resultadoF,
       showConfirmButton: true,
+      confirmButtonColor: "#386dbd",
       timer: 6000,
-      background:'linear-gradient(#2b45cf,#3b45cf)',
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
 
     presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
@@ -262,7 +316,12 @@ function Presupuesto() {
       title:
         "El Total De Tu Presupuesto Para Cartel Back Light Es: $ " + descuentoB,
       showConfirmButton: true,
+      confirmButtonColor: "#386dbd",
       timer: 6000,
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
     presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
     total = total + resultado;
@@ -294,7 +353,12 @@ function Presupuesto() {
       title:
         "El Total De Tu Presupuesto Para Cartel Back Light Es: $ " + resultadoB,
       showConfirmButton: true,
+      confirmButtonColor: "#386dbd",
       timer: 6000,
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
     presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
     total = total + resultado;
@@ -302,7 +366,7 @@ function Presupuesto() {
     presufinish.removeChild(presufinish.getElementsByTagName("p")[0]); // ESTE ES EL QUE FUNCIONA///////////////
   }
 }
-
+//funcion reiniciar//
 function reiniciar() {
   document.getElementById("total0").addEventListener("click", () => {
     document.getElementById("presuFinal").innerHTML = "<p>$0</p>";
@@ -311,7 +375,7 @@ function reiniciar() {
     arrayFinal = [];
   });
 }
-
+//validar correo//
 function validarCorreo(correo) {
   let expReg =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -320,14 +384,19 @@ function validarCorreo(correo) {
     Swal.fire({
       position: "center",
       icon: "error",
-      title: "El correo ingresado no es valido",
+      title: "Los Datos ingresados no son validos",
       showConfirmButton: true,
       timer: 3000,
+      confirmButtonColor: "#386dbd",
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
   }
   return esValido;
 }
-
+//validar nombre//
 function nombreT(nomb) {
   let expReg = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
   let esValido = expReg.test(nomb);
@@ -338,6 +407,11 @@ function nombreT(nomb) {
       title: "El nombre  ingresado no es valido",
       showConfirmButton: true,
       timer: 3000,
+      confirmButtonColor: "#386dbd",
+      background: "#009ddd",
+      customClass: {
+        title: "titulo",
+      },
     });
   }
   return esValido;
