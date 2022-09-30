@@ -123,7 +123,7 @@
           <input type="text" placeholder="Email" id="lname" required>
           <input type="password" placeholder="Contraseña" id="pass" required>
         </div>
-        <button id="registrar" >Registrarse</button>
+        <button id="registrar">Registrarse</button>
         <div id="regis">
 
         </div>
@@ -143,26 +143,28 @@
   <aside>
     <div>
       <div id="presupuesto">
-        <h3>  PRESUPUESTA TU CARTEL!</h3>
-        <H4>Ingresa los metros que necesitas de cartel </H4>
+        <h2> PRESUPUESTA TU CARTEL!</h2>
+        <H3>Ingresa los metros que necesitas de cartel </H3>
         <input id="number" type="number" name="um">
-<h4>Selecciona el tipo de cartel</h4>
+        <h4>Selecciona el tipo de cartel</h4>
 
-<button id="front" class="fondoColor">Cartel Front</button> <button class="fondoColor" id="backl">Cartel Back-L.</button>
-<div>
-  <button  onclick="Presupuesto();" >Presupuestar</button> <button  id="total0" onclick="reiniciar();">Reiniciar Todo</button>
-      </div>
-        <table class="table padding pb-4">
+        <button id="front" class="fondoColor">Cartel Front</button> <button class="fondoColor" id="backl">Cartel
+          Back-L.</button>
+        <div>
+          <button onclick="Presupuesto();">Presupuestar</button> <button id="total0" onclick="reiniciar();">Reiniciar
+            Todo</button>
+        </div>
+        <table class="table padding pb-4 m-4">
           <thead>
             <tr>
-              <th scope="col">Cartel Tipo</th>
-              <th scope="col"> Metros</th>
-              <th scope="col">Total</th>
+              <th id="blanco" scope="col">Cartel Tipo</th>
+              <th id="blanco" scope="col"> Metros</th>
+              <th id="blanco" scope="col">Total</th>
             </tr>
           </thead>
           <tbody id="cuerpoPresupuesto">
-            
-            
+
+
 
           </tbody>
         </table>
@@ -170,33 +172,23 @@
       </div>
     </div>
     <h2>Presupuesto Total</h2>
-    <div id="presuFinal" style="border: 1px solid red"> 
-      <p id="0">$0</p> 
-      
+    <div id="presuFinal" style="border: 1px solid red">
+      <p id="0">$0</p>
+
     </div>
 
     <form action="https://formsubmit.co/d8a514d81e522ae3ca290a989774e63c" method="POST">
       <div class="mb-3">
         <h2>Dejanos Tu Pregunta Personalizada Y Nos Cotactamos Con Vos!</h2>
-        <label >Ingresa Tu Email</label>
-        <input
-          type="email" name="email"
-          
-          id="exampleFormControlInput1"
-          placeholder="name@example.com"
-        />
+        <label>Ingresa Tu Email</label>
+        <input type="email" name="email" id="exampleFormControlInput1" placeholder="name@example.com" />
       </div>
       <div class="mb-3">
-        <label 
-          >Escribinos Tu Consulta</label
-        >
-        <textarea type="textarea" name="textarea"
-      
-          rows="10"
-        ></textarea>
+        <label>Escribinos Tu Consulta</label>
+        <textarea type="textarea" name="textarea" rows="10"></textarea>
         <input type="submit" name="submit" value="ENVIAR" />
       </div>
-      
+
       <input type="hidden" name="_next" value="http://127.0.0.1:5500/">
       <input type="hidden" name="_captcha" value="false">
     </form>
@@ -251,12 +243,12 @@
 
           </div>
 
-          <!-- Grid column -->
+      
         </div>
-        <!-- Grid row -->
+    
       </div>
     </section>
-    <!-- Section: Links  -->
+   
 
     <!-- Copyright -->
     <div class="text-center p-3 text-white" style="background-color: rgba(0, 0, 0, 0.2)">
@@ -272,12 +264,9 @@
   <!-- JavaScript Bundle with Popper -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-  crossorigin="anonymous"></script>
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
   <script src="main.js"></script>
 </body>
 
 </html>
-
-
-

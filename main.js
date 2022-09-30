@@ -191,6 +191,7 @@ function Presupuesto() {
       title: "El Total De Tu Presupuesto Para Cartel Front Es: $ " + descuentoF,
       showConfirmButton: true,
       timer: 6000,
+      background:'linear-gradient (#2b45cf,#3b45cf)',
     });
 
     presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
@@ -223,6 +224,7 @@ function Presupuesto() {
       title: "El Total De Tu Presupuesto Para Cartel Front Es: $ " + resultadoF,
       showConfirmButton: true,
       timer: 6000,
+      background:'linear-gradient(#2b45cf,#3b45cf)',
     });
 
     presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
