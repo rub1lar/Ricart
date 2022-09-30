@@ -13,16 +13,32 @@ function capturar() {
   let capturarNombre = document.getElementById("name").value;
   let capturarEmail = document.getElementById("lname").value;
   let capturarContraseña = document.getElementById("pass").value;
+
   nuevoRegistrado = new Registrado(
     capturarUsuario,
     capturarNombre,
     capturarEmail,
     capturarContraseña
   );
-  if (
+
+  let valido = validarCorreo(capturarEmail);
+  let nombValido = nombreT(capturarNombre);
+  UsuarioNoDisponible = ArrayRegistrados.find(
+    ///
+    (registro) => registro.usuario == capturarUsuario
+  );
+  if (UsuarioNoDisponible) {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "El Nombre De Usuario Ya Fue Usado, Prueba Otro ",
+      showConfirmButton: true,
+      timer: 4000,
+    });
+  } else if (
     capturarUsuario != "" &&
-    capturarNombre != "" &&
-    capturarEmail != "" &&
+    nombValido == true &&
+    valido == true &&
     capturarContraseña != ""
   ) {
     Swal.fire({
@@ -43,7 +59,6 @@ function capturar() {
     guardarLocalStorage();
   }
 }
-
 // ACAC TRAIGO LOS ELEMENTOS DEL LOCAL STORAGE ANTES QUE NADA //
 let ArrayRegistrados =
   JSON.parse(localStorage.getItem("registrados en JSON")) || [];
@@ -56,7 +71,7 @@ let guardarLocalStorage = () => {
 let UsuarioLogeado = null;
 // ACA HICE UN if CON UN CONDICIONAL DE QUE EL PASS SEA IGUAL QUE A LA
 //CONTRASEÑA INGRESADA POR EL USUARIO
-
+//FUNCION PARA LOGGERASE//
 function Loggearse() {
   let usuarioL = document.getElementById("primerImput").value;
   let contraseña = document.getElementById("segundoImput").value;
@@ -77,7 +92,7 @@ function Loggearse() {
       position: "center",
       icon: "error",
       title: "Contraseña Incorrecta",
-      timer: 2000,
+      timer: 4000,
     });
   }
 }
@@ -106,8 +121,8 @@ console.log(carteles);
 let cartelesDeLona = carteles.filter((cartel) => cartel.categoria == "lona");
 console.log(cartelesDeLona);
 
-document.getElementById("logear").addEventListener("click", Loggearse);
 document.getElementById("registrar").addEventListener("click", capturar);
+document.getElementById("logear").addEventListener("click", Loggearse);
 
 let enterr = document.getElementById("primerImput");
 enterr.addEventListener("keyup", (event) => {
@@ -141,9 +156,10 @@ bk.addEventListener("click", () => {
 // depende el tipo que elija hace una cuenta diferente por la cantidad de metros ingresada, tambien verifica si esta registrado y le suma un 10 %
 //de descuento al precio final
 let arrayFinal = [];
-function Presupuesto() {
-  let presufinish= document.getElementById(`presuFinal`);
+let total = null;
 
+function Presupuesto() {
+  let presufinish = document.getElementById(`presuFinal`);
   let imputNumber = document.getElementById("number").value;
   let resultadoF = imputNumber * cartelFront.precio;
   let resultadoB = imputNumber * cartelBack.precio;
@@ -151,8 +167,8 @@ function Presupuesto() {
   let descuentoF = resultadoF * 0.9;
   if (front == true && UsuarioLogeado && imputNumber != "" && imputNumber > 0) {
     document.getElementById("cuerpoPresupuesto").innerHTML += `
-<tr><td>
-<p>CARTEL FRONT</p>
+<tr ><td>
+<p >CARTEL FRONT</p>
 </td>
 <td>
 <p>${imputNumber}</p>
@@ -160,7 +176,6 @@ function Presupuesto() {
 <td>
 <p>${descuentoF}</p>
 </td>
-<td> <button  onclick ="deletear(this);"> borrar</button> </td>
 </tr>
 `;
 
@@ -178,18 +193,14 @@ function Presupuesto() {
       timer: 6000,
     });
 
-/*     document.removeChild(presufinish);/*  
+    presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
 
-   /*  presufinish.replaceChild(`<p>${resultado}</p>`,presufinish.children[0]); */
-    presufinish.innerHTML += `<p>${resultado}</p>`; 
-    
-
-
+    presufinish.removeChild(presufinish.getElementsByTagName("p")[0]);
   } else if (front == true && imputNumber != "" && imputNumber > 0) {
- document.getElementById("cuerpoPresupuesto").innerHTML += `
+    document.getElementById("cuerpoPresupuesto").innerHTML += `
     
 <tr><td>
-<p>CARTEL FRONT</p>
+<p  >CARTEL FRONT</p>
 </td>
 <td>
 <p>${imputNumber}</p>
@@ -197,17 +208,15 @@ function Presupuesto() {
 <td>
 <p>${resultadoF}</p>
 </td>
-<td> <button  onclick ="deletear(this);"> borrar</button> </td>
 </tr>
 `;
     arrayFinal.push(resultadoF);
-    
+
     const resultado = arrayFinal.reduce((acc, item) => {
       acc = parseInt(acc) + parseInt(item);
       return acc;
     });
-    
-  /*   pres.replaceChild(resultado,press.children[0]); */
+
     Swal.fire({
       position: "center",
       icon: "success",
@@ -216,11 +225,10 @@ function Presupuesto() {
       timer: 6000,
     });
 
-/* 
-    presufinish.children[0].replaceWith(resultado); */
-/*     document.removeChild(presufinish); */
-    /* presufinish.replaceChild(`<p>${resultado}</p>`,presufinish.children[0]); */
-   let y= presufinish.innerHTML += `<p>${resultado}</p>`;
+    presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
+    total = total + resultado;
+
+    presufinish.removeChild(presufinish.getElementsByTagName("p")[0]);
   } else if (
     backl == true &&
     UsuarioLogeado &&
@@ -228,8 +236,8 @@ function Presupuesto() {
     imputNumber > 0
   ) {
     document.getElementById("cuerpoPresupuesto").innerHTML += `
-    <tr><td>
-    <p>CARTEL BACK-LIGHT</p>
+    <tr ><td>
+    <p >CARTEL BACK-LIGHT </p>
     </td>
     <td>
     <p>${imputNumber}</p>
@@ -237,9 +245,15 @@ function Presupuesto() {
     <td>
     <p>${descuentoB}</p>
     </td>
-    <td> <button  onclick ="deletear(this);"> borrar</button> </td>
     </tr>
     `;
+
+    arrayFinal.push(descuentoB);
+
+    const resultado = arrayFinal.reduce((acc, item) => {
+      return (acc = acc + item);
+    });
+
     Swal.fire({
       position: "center",
       icon: "success",
@@ -248,10 +262,14 @@ function Presupuesto() {
       showConfirmButton: true,
       timer: 6000,
     });
+    presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
+    total = total + resultado;
+
+    presufinish.removeChild(presufinish.getElementsByTagName("p")[0]); // ESTE ES EL QUE FUNCIONA///////////////
   } else if (backl == true && imputNumber != "" && imputNumber > 0) {
     document.getElementById("cuerpoPresupuesto").innerHTML += `
-    <tr><td>
-    <p>CARTEL BACK-LIGHT</p>
+    <tr ><td>
+    <p >CARTEL BACK-LIGHT </p>
     </td>
     <td>
     <p>${imputNumber}</p>
@@ -259,9 +277,14 @@ function Presupuesto() {
     <td>
     <p>${resultadoB}</p>
     </td>
-    <td> <button  onclick ="deletear(this);"> borrar</button> </td>
     </tr>
     `;
+
+    arrayFinal.push(resultadoB);
+
+    const resultado = arrayFinal.reduce((acc, item) => {
+      return (acc = acc + item);
+    });
 
     Swal.fire({
       position: "center",
@@ -271,25 +294,49 @@ function Presupuesto() {
       showConfirmButton: true,
       timer: 6000,
     });
+    presufinish.innerHTML += `<p id ="pres" > $${resultado} </p>`;
+    total = total + resultado;
+
+    presufinish.removeChild(presufinish.getElementsByTagName("p")[0]); // ESTE ES EL QUE FUNCIONA///////////////
   }
-
-/*   presufinish.remove("p"[1]); */
-
 }
 
-function del(el) {
-  const item = el.parentElement;
-  item.remove();
+function reiniciar() {
+  document.getElementById("total0").addEventListener("click", () => {
+    document.getElementById("presuFinal").innerHTML = "<p>$0</p>";
+    document.getElementById("cuerpoPresupuesto").innerHTML = "";
+    total = 0;
+    arrayFinal = [];
+  });
 }
 
-
-function deletear(el) {
-  const item = el.parentElement.parentElement;
-  item.remove();
-
+function validarCorreo(correo) {
+  let expReg =
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+  let esValido = expReg.test(correo);
+  if (esValido != true) {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "El correo ingresado no es valido",
+      showConfirmButton: true,
+      timer: 3000,
+    });
+  }
+  return esValido;
 }
 
-/* const resultado = arrayFinal.reduce((acc , item ) => {
-return acc = acc + item;
-})
- */
+function nombreT(nomb) {
+  let expReg = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+  let esValido = expReg.test(nomb);
+  if (esValido != true) {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "El nombre  ingresado no es valido",
+      showConfirmButton: true,
+      timer: 3000,
+    });
+  }
+  return esValido;
+}

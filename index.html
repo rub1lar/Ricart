@@ -31,9 +31,6 @@
           <li class="nav-item">
             <a class="nav-link" href="nuestrosTrabajos.html">NUESTROS TRABAJOS</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacto.html">CONTACTOS</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -95,23 +92,23 @@
       <article>
         <h3>Carteles Front-ligth</h3>
         <img class="location-image" src="img/inicio.jpeg" alt="imagen de cartel grande color verde">
-        <a class="btn btn-info" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
+        <a class="btn btn-secondary" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
       </article>
 
       <article>
         <h3>Carteles Back-ligth</h3>
         <img class="location-image" src="img/backl.jpeg" alt="imagen de cartel back-light">
-        <a class="btn btn-info" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
+        <a class="btn btn-secondary" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
       </article>
       <article>
         <h3>Letra Corporeas</h3>
         <img class="location-image" src="img/corporea2.jpeg" alt="cartel con letras corporeal color blancas y rojas">
-        <a class="btn btn-info" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
+        <a class="btn btn-secondary" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
       </article>
       <article>
         <h3>Toldos/Decoracion Vidrieras</h3>
         <img class="location-image" src="img/toldo.jpeg" alt="vidriera decorada con vinilo">
-        <a class="btn btn-info text-center" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
+        <a class="btn btn-secondary text-center" href="nuestrosTrabajos.html" role="button" target="_blank">Ver mas</a>
       </article>
       <article>
 
@@ -131,8 +128,7 @@
 
         </div>
         <div>
-          <h2> Login </h2>
-
+          <h2 class="mt-4"> Login </h2>
           <div class="formu">
             <input id="primerImput" type="text" placeholder="Usuario">
             <input id="segundoImput" type="password" placeholder="Contraseña">
@@ -140,39 +136,28 @@
           <button id="logear">Iniciar Sesion</button>
           <h3 id="logeo"></h3>
         </div>
-  
       </div>
     </div>
-
     </div>
-
   </main>
-
   <aside>
-    <h2>Pedi Ahora Tu Cartel!</h2>
-    <h3>Llama o manda un whats app al </h3>
-    <h3>(011)1567127274</h3>
-    <h4>ricartcarteles@gmail.com</h4>
-
     <div>
-    
       <div id="presupuesto">
+        <h3>  PRESUPUESTA TU CARTEL!</h3>
         <H4>Ingresa los metros que necesitas de cartel </H4>
         <input id="number" type="number" name="um">
-        <h3>  PRESUPUESTA TU CARTEL!</h3>
 <h4>Selecciona el tipo de cartel</h4>
 
-<button id="front">Cartel Front</button> <button id="backl">Cartel Back-Light</button>
+<button id="front" class="fondoColor">Cartel Front</button> <button class="fondoColor" id="backl">Cartel Back-L.</button>
 <div>
-        <a class="btn btn-secondary text-center mb-4" role="button" onclick="Presupuesto();">Presupuestar</a>
+  <button  onclick="Presupuesto();" >Presupuestar</button> <button  id="total0" onclick="reiniciar();">Reiniciar Todo</button>
       </div>
         <table class="table padding pb-4">
           <thead>
             <tr>
-              <th scope="col">Tipo de Cartel</th>
-              <th scope="col">Cantidad de Metros</th>
-              <th scope="col">TOTAL</th>
-              <th scope="col">Eliminar</th>
+              <th scope="col">Cartel Tipo</th>
+              <th scope="col"> Metros</th>
+              <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody id="cuerpoPresupuesto">
@@ -186,22 +171,23 @@
     </div>
     <h2>Presupuesto Total</h2>
     <div id="presuFinal" style="border: 1px solid red"> 
+      <p id="0">$0</p> 
       
     </div>
 
     <form action="https://formsubmit.co/d8a514d81e522ae3ca290a989774e63c" method="POST">
       <div class="mb-3">
         <h2>Dejanos Tu Pregunta Personalizada Y Nos Cotactamos Con Vos!</h2>
-        <label cl for="exampleFormControlInput1">Ingresa Tu Email</label>
+        <label >Ingresa Tu Email</label>
         <input
           type="email" name="email"
-          class="form-control"
+          
           id="exampleFormControlInput1"
           placeholder="name@example.com"
         />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlTextarea1"
+        <label 
           >Escribinos Tu Consulta</label
         >
         <textarea type="textarea" name="textarea"
@@ -210,6 +196,7 @@
         ></textarea>
         <input type="submit" name="submit" value="ENVIAR" />
       </div>
+      
       <input type="hidden" name="_next" value="http://127.0.0.1:5500/">
       <input type="hidden" name="_captcha" value="false">
     </form>
@@ -259,8 +246,8 @@
             <h6 class="text-uppercase fw-bold">Contacto</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
             <p><i class="fas fa-home mr-3"></i>Buenos Aires, Jose C. Paz</p>
-            <p><i class="fas fa-envelope mr-3"></i>ricartcarteles@gmail.com</p>
-            <p><i class="fas fa-phone mr-3"></i> +54 1167127274</p>
+            <p><i class="fas fa-envelope mr-3"></i>ricartcarteles@xxxxx.com</p>
+            <p><i class="fas fa-phone mr-3"></i> +54 1111111111</p>
 
           </div>
 
