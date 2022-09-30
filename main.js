@@ -88,10 +88,11 @@ let UsuarioLogeado = null;
 function Deslogearse() {
   (document.getElementById("regitre").innerHTML = ` 
    <h2 class="mt-4"> Login </h2>
-  <div class="formu">
-  <input id="primerImput" type="text" placeholder="Usuario">
-  <input id="segundoImput" type="password" placeholder="Contraseña">
-  </div>
+   <form class="formu">
+            <h2 class="mt-4"> Login </h2>
+            <input id="primerImput" type="text" placeholder="Usuario">
+            <input id="segundoImput" type="password" placeholder="Contraseña">
+          </form>
   <button id="logear">Iniciar Sesion</button>
   <h3 id="logeo"></h3> 
   `),
