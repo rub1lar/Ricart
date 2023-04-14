@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
 * {
     padding: 0;
     margin: 0;
@@ -5,7 +9,8 @@
 
 }
 
-header img {
+header img {border-bottom-left-radius: 30px;
+   border-bottom-right-radius: 30px;
     width: 100%;
     height: auto;
 }
@@ -44,12 +49,16 @@ aside {
 }
 
 main img {
-
+ 
+    border-color: #1058cc;
+    border-style: solid;
+    max-width: 400px;
     width: 100%;
     height: auto;
-    padding: 1rem 2rem 1rem 2rem;
+    box-shadow: rgba(23, 64, 198, 0.519) 0px 30px 90px;
     border-radius: 5rem;
 }
+
 
 main h3 {
     text-align: center;
@@ -57,24 +66,28 @@ main h3 {
 }
 
 body {
-    background-color:#0f4571;
+ background-image: url(xxx.jpg);
+ background-size: cover;
+ 
 }
 
 h1,
-h2 {
-    color: aliceblue;
+h2,
+h4{
+
+    color: #0f3671;
     text-align: center;
+    font-weight: 700;
 }
 
 h3 {
     margin: 1rem 2rem 1rem 2rem;
-    color: aliceblue;
+    color: #0f3671;
+    font-weight: 700;
+
 }
 
-p {
-    font-size: 1.5rem;
-    color: aliceblue;
-}
+
 
 nav {
     align-content: center;
@@ -82,7 +95,7 @@ nav {
     justify-content: center !important;
     font-weight: 600;
     font-size: 2rem;
-    background-color:#0f3671;
+    background-color:#1d639d;
 
 }
 
@@ -107,10 +120,8 @@ nav ul li {
     border-color: #d4e6ed;
 }
 
-.w-100 {
-    height: 300px;
-}
- 
+
+
 .flex_index {
     text-align: center;
     display: flex;
@@ -120,6 +131,9 @@ nav ul li {
 }
 
 .container_texto {
+    font-size: 2em;
+    font-family: 'Roboto', sans-serif;
+    background-color:#1d639d;
     box-shadow: 0 0 20px rgb(6, 80, 192);
     border-radius: 1rem;
     margin-top: 1.3rem;
@@ -133,8 +147,10 @@ nav ul li {
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+
     grid-gap: 1em;
 }
 
@@ -162,6 +178,9 @@ nav ul li {
 }
 
 form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
     border-color: #000;
     border-style: double;
     padding: 10px;
@@ -169,7 +188,12 @@ form {
     margin: 3rem;
     background-color: #386dbd;
 }
-
+.formulario {
+    display:flex ;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around
+}
 form label {
 
     display: inline-block;
@@ -220,6 +244,7 @@ textarea {
 }
 
 .formu {
+    
     display: flex;
     align-items: center;
     align-content: center;
@@ -281,7 +306,7 @@ aside button {
 }
 
 #blanco {
-    color: antiquewhite;
+    color: #0f3671;
 }
 .sesionIniciada {
     margin-top: 2rem;
